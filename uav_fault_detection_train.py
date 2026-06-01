@@ -1,22 +1,3 @@
-# =============================================================================
-# UAV SENSOR FAULT DETECTION — COMPLETE 1D-CNN TRAINING PIPELINE
-# =============================================================================
-# Dataset  : RflyMAD Real Flight (Real-Sensors + Real-No Fault)
-# Firmware : PX4  |  Log format: ULog-extracted CSVs
-# Base rate: 10 Hz (master resampling target)
-#
-# Pipeline stages:
-#   1. Folder walker  → finds all flight cases automatically
-#   2. Topic loader   → reads only 9 required CSVs per flight case
-#   3. Preprocessing  → resample, filter, align, merge
-#   4. Labeling       → extract fault labels from rfly_ctrl_lxl
-#   5. Windowing      → sliding window (size=50, overlap=50%)
-#   6. Normalisation  → Z-score StandardScaler
-#   7. 1D-CNN         → 3 conv blocks + GlobalAvgPool + Dense
-#   8. Training       → class weights, early stopping, LR scheduler
-#   9. Evaluation     → confusion matrix, classification report
-#  10. Save           → model (.keras) + scaler (.pkl)
-# =============================================================================
 
 import os
 import glob
